@@ -20,6 +20,7 @@ import observer.example.Pack;
 import observer.example.Tzuyoung;
 import singleton.Singleton;
 import strategy.*;
+import template.*;
 
 public class Main {
     public static void main(String[] args) {
@@ -33,7 +34,8 @@ public class Main {
 //        memento();
 //        observer();
 //        observerExample();
-        strategy();
+//        strategy();
+        template();
     }
 
     public static void builder() {
@@ -162,5 +164,22 @@ public class Main {
         }
 
         System.out.println(player1.nextHand().fight(player4.nextHand()));
+    }
+
+    public static void template() {
+        Hero hero = new Hero("용사");
+        Hero wizard = new Wizard("마법사");
+        SuperHero superHero = new SuperHero("슈퍼맨");
+
+        Monster monster = new Slime('A');
+
+        superHero.attack(monster);
+        superHero.setFlying(true);
+        hero.attack(monster);
+        wizard.attack(monster);
+
+        monster.attack(superHero);
+        monster.attack(hero);
+        monster.attack(wizard);
     }
 }

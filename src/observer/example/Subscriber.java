@@ -9,7 +9,5 @@ public abstract class Subscriber {
         youtuber.removeSubscriber(this);
     };
 
-    public void alert(String msg) {
-        System.out.println("알림 : " + msg);
-    };
+    public abstract void alert(String msg);
 }
