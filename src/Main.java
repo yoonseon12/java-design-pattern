@@ -10,6 +10,14 @@ import factory.Factory;
 import factory.IDCard;
 import factory.IDCardFactory;
 import factory.Product;
+import observer.DigitObserver;
+import observer.GraphicObserver;
+import observer.Observer;
+import observer.RandomGenerator;
+import observer.example.Kim;
+import observer.example.Lee;
+import observer.example.Pack;
+import observer.example.Tzuyoung;
 import singleton.Singleton;
 
 public class Main {
@@ -21,7 +29,9 @@ public class Main {
 //        adapter();
 //        decorator();
 //        command();
-        memento();
+//        memento();
+//        observer();
+        observerExample();
     }
 
     public static void builder() {
@@ -95,5 +105,45 @@ public class Main {
 
     public static void memento() {
         new DrawingApp("Memento");
+    }
+
+    public static void observer() {
+        RandomGenerator randomGenerator = new RandomGenerator();
+
+        Observer observer1 = new DigitObserver();
+        Observer observer2 = new GraphicObserver();
+        Observer observer3 = number -> {
+            for (int i = 0; i < number; i++) {
+                System.out.print("=");
+            }
+            System.out.println();
+        };
+
+        randomGenerator.addObserver(observer1);
+        randomGenerator.addObserver(observer2);
+        randomGenerator.addObserver(observer3);
+        randomGenerator.execute();
+
+        randomGenerator.removeObserver(observer2);
+        randomGenerator.execute();
+    }
+
+    public static void observerExample() {
+        Tzuyoung tzuyoung = new Tzuyoung();
+
+        Kim kim = new Kim();
+        Lee lee = new Lee();
+        Pack pack = new Pack();
+
+        kim.follow(tzuyoung);
+        lee.follow(tzuyoung);
+        pack.follow(tzuyoung);
+
+        tzuyoung.upload("첫 번째 동영상");
+
+        kim.unFollow(tzuyoung);
+
+        tzuyoung.upload("두 번째 동영상");
+
     }
 }
