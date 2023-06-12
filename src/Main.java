@@ -20,8 +20,10 @@ public class Main {
 //        singleton();
 //        adapter();
 //        decorator();
-        command();
+//        command();
+        memento();
     }
+
     public static void builder() {
         Text text = new Text.Builder()
                 .setTitle("hello")
@@ -54,7 +56,7 @@ public class Main {
         }
     }
 
-    private static void singleton() {
+    public static void singleton() {
         Singleton singleton1 = Singleton.getInstance();
         Singleton singleton2 = Singleton.getInstance();
 
@@ -91,4 +93,7 @@ public class Main {
         new DrawingApp("Command");
     }
 
+    public static void memento() {
+        new DrawingApp("Memento");
+    }
 }
