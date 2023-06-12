@@ -1,6 +1,7 @@
 import adapter.Person;
 import adapter.PersonAdepter;
 import builder.Text;
+import command.DrawingApp;
 import decorator.FullBorder;
 import decorator.Scaffold;
 import decorator.SideBorder;
@@ -18,7 +19,8 @@ public class Main {
 //        none_singleton();
 //        singleton();
 //        adapter();
-        decorator();
+//        decorator();
+        command();
     }
     public static void builder() {
         Text text = new Text.Builder()
@@ -71,19 +73,22 @@ public class Main {
         System.out.println(personAdepter.showAge()); // 30
     }
 
-    private static void decorator() {
-
+    public static void decorator() {
         new Scaffold(
                 new FullBorder(
                         new SideBorder(
                                 new FullBorder(
                                         new SideBorder(
-                                                new TextWidget("hello")
+                                                new TextWidget("decorator pattern")
                                         )
                                 )
                         )
                 )
         );
+    }
+
+    public static void command() {
+        new DrawingApp("Command");
     }
 
 }
